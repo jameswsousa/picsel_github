@@ -17,10 +17,28 @@ class BaseScaffold extends StatelessWidget {
     return Scaffold(
       drawer: hasDrawer
           ? Drawer(
-              backgroundColor: AppColors.primaryDarker,
+              backgroundColor: AppColors.secondary,
               child: Column(
                 children: [
-                  SizedBox(height: 50),
+                  Container(
+                    width: double.infinity,
+                    color: AppColors.primary,
+                    padding: EdgeInsets.fromLTRB(
+                        20, MediaQuery.of(context).padding.top + 24, 20, 24),
+                    child: Row(
+                      children: [
+                        Image.asset(AppIcons.logo,
+                            height: 36, color: Colors.white),
+                        SizedBox(width: 12),
+                        Text('Github API',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600)),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 8),
                   DrawerComponent(
                     img: AppIcons.search,
                     title: 'Pesquisar',
@@ -31,24 +49,25 @@ class BaseScaffold extends StatelessWidget {
                   ),
                   DrawerComponent(
                       img: AppIcons.download, title: 'Salvos', onTap: () {}),
-                  Expanded(child: Container()),
+                  Spacer(),
+                  Divider(height: 1, color: AppColors.border),
                   DrawerComponent(
                     img: AppIcons.logout,
                     title: 'Logout',
+                    color: AppColors.error,
                     onTap: () {
                       Modular.to.pop(); // fecha o menu antes de trocar de tela
                       Modular.to.navigate('/login/');
                     },
                   ),
-                  SizedBox(
-                    height: 20,
-                  )
+                  SizedBox(height: MediaQuery.of(context).padding.bottom + 8),
                 ],
               ))
           : null,
       backgroundColor: backgroundColor,
       appBar: AppBar(
           backgroundColor: AppColors.primary,
+          foregroundColor: Colors.white,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -72,33 +91,22 @@ class DrawerComponent extends StatelessWidget {
   final String title;
   final String img;
   final Function() onTap;
+  final Color? color;
   const DrawerComponent({
     required this.title,
     required this.img,
     required this.onTap,
+    this.color,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    final itemColor = color ?? AppColors.primary;
+    return ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 24),
+      leading: Image.asset(img, height: 22, color: itemColor),
+      title: Text(title, style: TextStyle(color: itemColor, fontSize: 18)),
       onTap: onTap,
-      child: Container(
-        margin: EdgeInsets.all(10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(img,
-                height: 20, fit: BoxFit.contain, color: Colors.white),
-            SizedBox(
-              width: 8,
-            ),
-            Text(
-              title,
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            )
-          ],
-        ),
-      ),
     );
   }
 }

@@ -26,14 +26,13 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: avoidOverflow
-          ? MediaQuery.of(context).size.width * .45
-          : double.maxFinite,
+      width: avoidOverflow ? MediaQuery.of(context).size.width * .45 : null,
       height: 56,
       child: TextButton(
           onPressed: onPressed,
           style: ButtonStyle(
-              padding: WidgetStateProperty.all(EdgeInsets.zero),
+              padding: WidgetStateProperty.all(
+                  EdgeInsets.symmetric(horizontal: 20, vertical: 12)),
               shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   side: invertColors
                       ? BorderSide(
@@ -44,7 +43,7 @@ class DefaultButton extends StatelessWidget {
                           ? BorderSide(
                               color: textColor ?? AppColors.border, width: 1)
                           : BorderSide(color: AppColors.border),
-                  borderRadius: BorderRadius.circular(5))),
+                  borderRadius: BorderRadius.circular(12))),
               textStyle: WidgetStateProperty.all(h1.copyWith(
                   fontSize: 18,
                   color: invertColors ? Colors.white : AppColors.primary)),
@@ -59,8 +58,8 @@ class DefaultButton extends StatelessWidget {
               })),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(width: 8),
               Text(
                 label,
                 style: h2.copyWith(
