@@ -24,6 +24,11 @@ class StarredRepositoryImpl extends StarredRepository {
         return Left(ServerFailure(
             title: 'Erro no Servidor',
             message: 'Não foi possível obter os dados'));
+      } catch (_) {
+        // Queda de rede no meio da requisição ou resposta em formato inesperado.
+        return Left(ServerFailure(
+            title: 'Erro ao carregar',
+            message: 'Não foi possível obter os dados.\nTente novamente.'));
       }
     } else {
       return Left(ConnectionFailure(

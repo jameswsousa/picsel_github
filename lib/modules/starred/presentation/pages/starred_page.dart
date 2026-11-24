@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:picsel_github/core/components/base_scaffold.dart';
+import 'package:picsel_github/core/components/error_state_widget.dart';
 import 'package:picsel_github/core/components/loading_widget.dart';
+import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/core/theme/colors.dart';
 import 'package:picsel_github/modules/starred/presentation/controller/starred_controller.dart';
 import 'package:picsel_github/modules/user/presentation/components/repo_component.dart';
@@ -29,7 +31,11 @@ class _StarredPageState extends State<StarredPage> {
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
       return BaseScaffold(
-        body: _controller.starredRepos == null
+        body: _controller.StarredState == AppStatesEnum.error
+            ? ErrorStateWidget(
+                failure: _controller.failure!,
+                onRetry: () => _controller.getStarred(widget.username))
+            : _controller.starredRepos == null
             ? Center(child: LoadingWidget())
             : SingleChildScrollView(
                 child: Column(

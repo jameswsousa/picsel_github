@@ -32,6 +32,7 @@ abstract class _UserControllerBase with Store {
   @action
   Future<void> getUser() async {
     user = null;
+    userState = AppStatesEnum.loading;
     final result = await _repository.getUser(username);
     result.fold((l) {
       failure = l;

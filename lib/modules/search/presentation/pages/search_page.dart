@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:picsel_github/core/components/base_scaffold.dart';
 import 'package:picsel_github/core/components/default_text_field.dart';
+import 'package:picsel_github/core/components/error_state_widget.dart';
 import 'package:picsel_github/core/components/loading_widget.dart';
 import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/core/theme/colors.dart';
@@ -63,6 +64,13 @@ class _SearchPageState extends State<SearchPage> {
             Observer(builder: (context) {
               if (_controller.searchState == AppStatesEnum.loading)
                 return LoadingWidget();
+              if (_controller.searchState == AppStatesEnum.error)
+                return Expanded(
+                  child: ErrorStateWidget(
+                    failure: _controller.failure!,
+                    onRetry: _controller.search,
+                  ),
+                );
               if (_controller.searchState == AppStatesEnum.loaded &&
                   _controller.searchResults.isEmpty)
                 return Text(

@@ -25,6 +25,7 @@ abstract class _StarredControllerBase with Store {
   @action
   Future<void> getStarred(String username) async {
     starredRepos = null;
+    StarredState = AppStatesEnum.loading;
     final result = await _repository.getStarredFromUser(username);
     result.fold((l) {
       failure = l;

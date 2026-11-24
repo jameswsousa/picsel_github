@@ -3,7 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:picsel_github/modules/user/presentation/components/repo_component.dart';
 import 'package:picsel_github/core/components/base_scaffold.dart';
+import 'package:picsel_github/core/components/error_state_widget.dart';
 import 'package:picsel_github/core/components/loading_widget.dart';
+import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/modules/user/presentation/components/user_component.dart';
 import 'package:picsel_github/modules/user/presentation/controller/user_controller.dart';
 
@@ -29,6 +31,9 @@ class _UserPageState extends State<UserPage> {
     return BaseScaffold(
       body: SafeArea(
         child: Observer(builder: (context) {
+          if (_controller.userState == AppStatesEnum.error)
+            return ErrorStateWidget(
+                failure: _controller.failure!, onRetry: _controller.getUser);
           if (_controller.user == null)
             return Center(child: LoadingWidget());
           else
