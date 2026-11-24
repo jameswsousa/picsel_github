@@ -51,7 +51,7 @@ class UserComponent extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () =>
-                      Modular.to.pushNamed('/starred', arguments: user.login),
+                      Modular.to.pushNamed('/starred/', arguments: user.login),
                   child: Container(
                     margin: EdgeInsets.all(8),
                     child: Image.asset(

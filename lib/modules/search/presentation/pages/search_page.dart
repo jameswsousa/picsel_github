@@ -33,12 +33,12 @@ class _SearchPageState extends State<SearchPage> {
               },
               style: TextStyle(color: AppColors.primary),
               textInputAction: TextInputAction.done,
-              onEditingComplete:
-                  _controller.text != null && _controller.text!.isNotEmpty
-                      ? () {
-                          _controller.search();
-                        }
-                      : null,
+              onEditingComplete: () {
+                if (_controller.text?.isNotEmpty ?? false) {
+                  FocusScope.of(context).unfocus(); // fecha o teclado
+                  _controller.search();
+                }
+              },
               fillColor: AppColors.secondary,
               suffixIcon: Observer(builder: (context) {
                 return InkWell(

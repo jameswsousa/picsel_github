@@ -26,16 +26,20 @@ class BaseScaffold extends StatelessWidget {
                     title: 'Pesquisar',
                     onTap: () {
                       Modular.to.pop();
-                      return Modular.to.pushNamed('/search');
+                      return Modular.to.pushNamed('/search/');
                     },
                   ),
                   DrawerComponent(
                       img: AppIcons.download, title: 'Salvos', onTap: () {}),
                   Expanded(child: Container()),
                   DrawerComponent(
-                      img: AppIcons.logout,
-                      title: 'Logout',
-                      onTap: () => Modular.to.navigate('/login')),
+                    img: AppIcons.logout,
+                    title: 'Logout',
+                    onTap: () {
+                      Modular.to.pop(); // fecha o menu antes de trocar de tela
+                      Modular.to.navigate('/login/');
+                    },
+                  ),
                   SizedBox(
                     height: 20,
                   )

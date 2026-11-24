@@ -94,10 +94,9 @@ class LoginPage extends StatelessWidget {
       DefaultAlertDialog.showError(
           context: context, failure: _controller.failure!);
     }
-    if (_controller.loginState == AppStatesEnum.loaded) ;
-    {
+    if (_controller.loginState == AppStatesEnum.loaded) {
       Modular.to.pop();
-      Modular.to.navigate('/user');
+      Modular.to.navigate('/user/');
       _controller.cleanFields();
     }
   }

@@ -15,7 +15,8 @@ class SearchDataSourceImpl extends SearchDataSource {
 
   @override
   Future<List<UserResultEntity>> searchUsers(String text) =>
-      _searchUsers('https://api.github.com/search/users?q=$text');
+      _searchUsers(
+          'https://api.github.com/search/users?q=${Uri.encodeQueryComponent(text)}');
 
   Future<List<UserResultEntity>> _searchUsers(String url) async {
     final response = await client.get(
