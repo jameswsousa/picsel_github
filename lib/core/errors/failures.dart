@@ -12,17 +12,13 @@ abstract class Failure extends Equatable {
 class ServerFailure extends Failure {
   final String title;
   final String message;
-  ServerFailure({
-    required this.title,
-    required this.message,
-  }) : super(title: title, message: message);
+  ServerFailure({required this.title, required this.message})
+    : super(title: title, message: message);
 }
 
 class ConnectionFailure extends Failure {
   final String title;
   final String message;
-  ConnectionFailure({
-    required this.title,
-    required this.message,
-  }) : super(title: title, message: message);
+  ConnectionFailure({required this.title, required this.message})
+    : super(title: title, message: message);
 }

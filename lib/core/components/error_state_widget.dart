@@ -29,9 +29,10 @@ class ErrorStateWidget extends StatelessWidget {
               failure.message,
               textAlign: TextAlign.center,
               style: h2.copyWith(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.primaryShade2),
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: AppColors.primaryShade2,
+              ),
             ),
             const SizedBox(height: 32),
             DefaultButton(

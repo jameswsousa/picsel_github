@@ -22,38 +22,47 @@ class _StarredPageState extends State<StarredPage> {
   final _controller = Modular.get<StarredController>();
   @override
   void initState() {
-    Future.delayed(Duration.zero,
-        (() async => await _controller.getStarred(widget.username)));
+    Future.delayed(
+      Duration.zero,
+      (() async => await _controller.getStarred(widget.username)),
+    );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
-      return BaseScaffold(
-        body: _controller.StarredState == AppStatesEnum.error
-            ? ErrorStateWidget(
-                failure: _controller.failure!,
-                onRetry: () => _controller.getStarred(widget.username))
-            : _controller.starredRepos == null
-            ? Center(child: LoadingWidget())
-            : SingleChildScrollView(
-                child: Column(
-                    children: <Widget>[
+    return Observer(
+      builder: (context) {
+        return BaseScaffold(
+          body: _controller.StarredState == AppStatesEnum.error
+              ? ErrorStateWidget(
+                  failure: _controller.failure!,
+                  onRetry: () => _controller.getStarred(widget.username),
+                )
+              : _controller.starredRepos == null
+              ? Center(child: LoadingWidget())
+              : SingleChildScrollView(
+                  child: Column(
+                    children:
+                        <Widget>[
                           Container(
-                              padding: EdgeInsets.all(15),
-                              child: Text(
-                                'Favoritos de ${widget.username}',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: AppColors.primaryDarker),
-                              ))
+                            padding: EdgeInsets.all(15),
+                            child: Text(
+                              'Favoritos de ${widget.username}',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: AppColors.primaryDarker,
+                              ),
+                            ),
+                          ),
                         ] +
                         _controller.starredRepos!
                             .map((e) => RepoComponent(e))
-                            .toList()),
-              ),
-      );
-    });
+                            .toList(),
+                  ),
+                ),
+        );
+      },
+    );
   }
 }

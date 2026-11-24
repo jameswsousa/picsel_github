@@ -8,14 +8,15 @@ import 'package:picsel_github/modules/user/presentation/pages/user_page.dart';
 class UserModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) => UserController(i())),
-        Bind((i) => UserDataSourceImpl(i())),
-        Bind<UserRepository>(
-            (i) => UserRepositoryImpl(networkInfo: i(), userDataSource: i())),
-      ];
+    Bind((i) => UserController(i())),
+    Bind((i) => UserDataSourceImpl(i())),
+    Bind<UserRepository>(
+      (i) => UserRepositoryImpl(networkInfo: i(), userDataSource: i()),
+    ),
+  ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, args) => UserPage(args.data)),
-      ];
+    ChildRoute('/', child: (_, args) => UserPage(args.data)),
+  ];
 }

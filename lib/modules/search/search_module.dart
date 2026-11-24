@@ -8,14 +8,15 @@ import 'package:picsel_github/modules/search/presentation/pages/search_page.dart
 class SearchModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) => SearchUsersController(i())),
-        Bind((i) => SearchDataSourceImpl(i())),
-        Bind<SearchRepository>((i) =>
-            SearchRepositoryImpl(networkInfo: i(), searchDataSource: i())),
-      ];
+    Bind((i) => SearchUsersController(i())),
+    Bind((i) => SearchDataSourceImpl(i())),
+    Bind<SearchRepository>(
+      (i) => SearchRepositoryImpl(networkInfo: i(), searchDataSource: i()),
+    ),
+  ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, args) => SearchPage()),
-      ];
+    ChildRoute('/', child: (_, args) => SearchPage()),
+  ];
 }

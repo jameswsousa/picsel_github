@@ -7,10 +7,11 @@ class UserEntity {
   final String? bio;
   final List<RepositoryEntity> repos;
 
-  UserEntity(
-      {required this.login,
-      required this.avatar_url,
-      this.name,
-      this.bio,
-      required this.repos});
+  UserEntity({
+    required this.login,
+    required this.avatar_url,
+    this.name,
+    this.bio,
+    required this.repos,
+  });
 }

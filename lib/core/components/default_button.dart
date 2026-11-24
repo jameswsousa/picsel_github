@@ -13,15 +13,16 @@ class DefaultButton extends StatelessWidget {
   final String? icon;
   final bool invertColors;
   final bool avoidOverflow;
-  const DefaultButton(
-      {required this.label,
-      this.buttonStyle,
-      this.avoidOverflow = false,
-      required this.onPressed,
-      this.invertColors = false,
-      this.color,
-      this.icon,
-      this.textColor});
+  const DefaultButton({
+    required this.label,
+    this.buttonStyle,
+    this.avoidOverflow = false,
+    required this.onPressed,
+    this.invertColors = false,
+    this.color,
+    this.icon,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,46 +30,53 @@ class DefaultButton extends StatelessWidget {
       width: avoidOverflow ? MediaQuery.of(context).size.width * .45 : null,
       height: 56,
       child: TextButton(
-          onPressed: onPressed,
-          style: ButtonStyle(
-              padding: WidgetStateProperty.all(
-                  EdgeInsets.symmetric(horizontal: 20, vertical: 12)),
-              shape: WidgetStateProperty.all(RoundedRectangleBorder(
-                  side: invertColors
-                      ? BorderSide(
-                          color: color ?? Colors.white,
-                          width: 1,
-                        )
-                      : textColor != null
-                          ? BorderSide(
-                              color: textColor ?? AppColors.border, width: 1)
-                          : BorderSide(color: AppColors.border),
-                  borderRadius: BorderRadius.circular(12))),
-              textStyle: WidgetStateProperty.all(h1.copyWith(
-                  fontSize: 18,
-                  color: invertColors ? Colors.white : AppColors.primary)),
-              backgroundColor: WidgetStateProperty.resolveWith((states) {
-                if (color != null) return color;
-                if (invertColors) return AppColors.primary;
-                if (states.contains(WidgetState.disabled)) {
-                  return AppColors.secondary.withValues(alpha: .3);
-                } else {
-                  return AppColors.secondary;
-                }
-              })),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                label,
-                style: h2.copyWith(
-                    fontSize: 18,
-                    color: textColor ??
-                        (invertColors ? Colors.white : AppColors.primary)),
-              )
-            ],
-          )),
+        onPressed: onPressed,
+        style: ButtonStyle(
+          padding: WidgetStateProperty.all(
+            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          ),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              side: invertColors
+                  ? BorderSide(color: color ?? Colors.white, width: 1)
+                  : textColor != null
+                  ? BorderSide(color: textColor ?? AppColors.border, width: 1)
+                  : BorderSide(color: AppColors.border),
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          textStyle: WidgetStateProperty.all(
+            h1.copyWith(
+              fontSize: 18,
+              color: invertColors ? Colors.white : AppColors.primary,
+            ),
+          ),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (color != null) return color;
+            if (invertColors) return AppColors.primary;
+            if (states.contains(WidgetState.disabled)) {
+              return AppColors.secondary.withValues(alpha: .3);
+            } else {
+              return AppColors.secondary;
+            }
+          }),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              label,
+              style: h2.copyWith(
+                fontSize: 18,
+                color:
+                    textColor ??
+                    (invertColors ? Colors.white : AppColors.primary),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -13,18 +13,18 @@ import '../../core/network/network_info.dart';
 class AppModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) => NetworkInfoImpl(i())),
-        Bind((i) => DataConnectionChecker()),
-        Bind((i) => HttpClient()),
-        Bind((i) => Client()),
-      ];
+    Bind((i) => NetworkInfoImpl(i())),
+    Bind((i) => DataConnectionChecker()),
+    Bind((i) => HttpClient()),
+    Bind((i) => Client()),
+  ];
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/', module: LoginModule()),
-        ModuleRoute('/user', module: UserModule()),
-        ModuleRoute('/login', module: LoginModule()),
-        ModuleRoute('/starred', module: StarredModule()),
-        ModuleRoute('/search', module: SearchModule()),
-      ];
+    ModuleRoute('/', module: LoginModule()),
+    ModuleRoute('/user', module: UserModule()),
+    ModuleRoute('/login', module: LoginModule()),
+    ModuleRoute('/starred', module: StarredModule()),
+    ModuleRoute('/search', module: SearchModule()),
+  ];
 }

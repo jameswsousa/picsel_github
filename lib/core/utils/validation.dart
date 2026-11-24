@@ -1,8 +1,8 @@
 class Validation {
   static bool email(String? email) {
     return RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email!);
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    ).hasMatch(email!);
   }
 
   static String? isValidEmail({String? email}) {
@@ -10,8 +10,8 @@ class Validation {
       return null;
     }
     if (RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email)) {
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    ).hasMatch(email)) {
       return null;
     }
     return "Email inválido";
@@ -32,8 +32,13 @@ class Validation {
     return null;
   }
 
-  static String? isBirthdayValid(int? day, int? month, int? year,
-      {bool isFuture = false, bool isHuman = false}) {
+  static String? isBirthdayValid(
+    int? day,
+    int? month,
+    int? year, {
+    bool isFuture = false,
+    bool isHuman = false,
+  }) {
     if (year == null ||
             month == null ||
             day == null ||
@@ -41,16 +46,16 @@ class Validation {
             isFuture
         ? DateTime(year!, month!, day!).isBefore(DateTime.now())
         : (year) > DateTime.now().year ||
-            (isHuman ? (year) < 1900 : (year) < 1950) ||
-            (month) > 12 ||
-            (day) >
-                (month == 2
-                    ? year % 4 == 0
-                        ? 29
-                        : 28
-                    : [4, 6, 9, 11].contains(month)
-                        ? 30
-                        : 31)) {
+              (isHuman ? (year) < 1900 : (year) < 1950) ||
+              (month) > 12 ||
+              (day) >
+                  (month == 2
+                      ? year % 4 == 0
+                            ? 29
+                            : 28
+                      : [4, 6, 9, 11].contains(month)
+                      ? 30
+                      : 31)) {
       return "Data inválida, digite novamente";
     }
     return null;

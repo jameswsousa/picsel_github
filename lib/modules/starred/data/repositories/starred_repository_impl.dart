@@ -10,31 +10,42 @@ class StarredRepositoryImpl extends StarredRepository {
   final NetworkInfo networkInfo;
   final StarredDataSource starredDataSource;
 
-  StarredRepositoryImpl(
-      {required this.networkInfo, required this.starredDataSource});
+  StarredRepositoryImpl({
+    required this.networkInfo,
+    required this.starredDataSource,
+  });
 
   @override
   Future<Either<Failure, List<RepositoryModel>>> getStarredFromUser(
-      String username) async {
+    String username,
+  ) async {
     if (await networkInfo.isConnected) {
       try {
         final result = await starredDataSource.getStarredFromUser(username);
         return Right(result);
       } on ServerException {
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro no Servidor',
-            message: 'Não foi possível obter os dados'));
+            message: 'Não foi possível obter os dados',
+          ),
+        );
       } catch (_) {
         // Queda de rede no meio da requisição ou resposta em formato inesperado.
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro ao carregar',
-            message: 'Não foi possível obter os dados.\nTente novamente.'));
+            message: 'Não foi possível obter os dados.\nTente novamente.',
+          ),
+        );
       }
     } else {
-      return Left(ConnectionFailure(
+      return Left(
+        ConnectionFailure(
           title: 'Erro na conexão',
-          message:
-              'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente'));
+          message: 'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente',
+        ),
+      );
     }
   }
 }

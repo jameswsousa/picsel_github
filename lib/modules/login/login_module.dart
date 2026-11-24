@@ -8,14 +8,15 @@ import 'package:picsel_github/modules/login/presentation/pages/login_page.dart';
 class LoginModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) => LoginController(i())),
-        Bind((i) => LoginDataSourceImpl(i())),
-        Bind<LoginRepository>(
-            (i) => LoginRepositoryImpl(networkInfo: i(), loginDataSource: i())),
-      ];
+    Bind((i) => LoginController(i())),
+    Bind((i) => LoginDataSourceImpl(i())),
+    Bind<LoginRepository>(
+      (i) => LoginRepositoryImpl(networkInfo: i(), loginDataSource: i()),
+    ),
+  ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, args) => LoginPage()),
-      ];
+    ChildRoute('/', child: (_, args) => LoginPage()),
+  ];
 }

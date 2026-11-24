@@ -31,9 +31,9 @@ class DateParser {
   static String lastMessageString(DateTime? date) {
     return date != null
         ? DateParser.getDateString(date) ==
-                DateParser.getDateString(DateTime.now())
-            ? DateFormat(timeFormat).format(date)
-            : getDateString(date)
+                  DateParser.getDateString(DateTime.now())
+              ? DateFormat(timeFormat).format(date)
+              : getDateString(date)
         : '';
   }
 

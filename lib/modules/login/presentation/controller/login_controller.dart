@@ -43,12 +43,15 @@ abstract class _LoginControllerBase with Store {
   @action
   Future<void> login() async {
     final result = await _repository.login(email!, password!);
-    result.fold((l) {
-      failure = l;
-      loginState = AppStatesEnum.error;
-    }, (r) {
-      if (r) loginState = AppStatesEnum.loaded;
-    });
+    result.fold(
+      (l) {
+        failure = l;
+        loginState = AppStatesEnum.error;
+      },
+      (r) {
+        if (r) loginState = AppStatesEnum.loaded;
+      },
+    );
   }
 
   @action

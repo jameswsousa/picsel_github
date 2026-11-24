@@ -8,14 +8,15 @@ import 'package:picsel_github/modules/starred/presentation/pages/starred_page.da
 class StarredModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) => StarredController(i())),
-        Bind((i) => StarredDataSourceImpl(i())),
-        Bind<StarredRepository>((i) =>
-            StarredRepositoryImpl(networkInfo: i(), starredDataSource: i())),
-      ];
+    Bind((i) => StarredController(i())),
+    Bind((i) => StarredDataSourceImpl(i())),
+    Bind<StarredRepository>(
+      (i) => StarredRepositoryImpl(networkInfo: i(), starredDataSource: i()),
+    ),
+  ];
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute('/', child: (_, args) => StarredPage(args.data)),
-      ];
+    ChildRoute('/', child: (_, args) => StarredPage(args.data)),
+  ];
 }

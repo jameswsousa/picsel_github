@@ -3,11 +3,13 @@ import 'package:picsel_github/core/errors/failures.dart';
 import 'package:picsel_github/modules/search/domain/entities/user_result_entity.dart';
 
 import '../../data/repositories/search_repository_impl.dart';
+
 import 'package:mobx/mobx.dart';
 
 part 'search_controller.g.dart';
 
-class SearchUsersController = _SearchControllerBase with _$SearchUsersController;
+class SearchUsersController = _SearchControllerBase
+    with _$SearchUsersController;
 
 abstract class _SearchControllerBase with Store {
   final SearchRepositoryImpl _repository;
@@ -31,12 +33,15 @@ abstract class _SearchControllerBase with Store {
     searchState = AppStatesEnum.loading;
     searchResults = [];
     final result = await _repository.searchUsers(text!);
-    result.fold((l) {
-      failure = l;
-      searchState = AppStatesEnum.error;
-    }, (r) {
-      searchResults = r;
-      searchState = AppStatesEnum.loaded;
-    });
+    result.fold(
+      (l) {
+        failure = l;
+        searchState = AppStatesEnum.error;
+      },
+      (r) {
+        searchResults = r;
+        searchState = AppStatesEnum.loaded;
+      },
+    );
   }
 }

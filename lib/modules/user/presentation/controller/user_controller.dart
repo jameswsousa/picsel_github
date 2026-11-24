@@ -1,6 +1,8 @@
 import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/core/errors/failures.dart';
+
 import '../../data/repositories/user_repository_impl.dart';
+
 import 'package:mobx/mobx.dart';
 
 import '../../domain/entities/user_entity.dart';
@@ -34,12 +36,15 @@ abstract class _UserControllerBase with Store {
     user = null;
     userState = AppStatesEnum.loading;
     final result = await _repository.getUser(username);
-    result.fold((l) {
-      failure = l;
-      userState = AppStatesEnum.error;
-    }, (r) {
-      user = r;
-      userState = AppStatesEnum.loaded;
-    });
+    result.fold(
+      (l) {
+        failure = l;
+        userState = AppStatesEnum.error;
+      },
+      (r) {
+        user = r;
+        userState = AppStatesEnum.loaded;
+      },
+    );
   }
 }

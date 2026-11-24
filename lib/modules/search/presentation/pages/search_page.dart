@@ -41,61 +41,65 @@ class _SearchPageState extends State<SearchPage> {
                 }
               },
               fillColor: AppColors.secondary,
-              suffixIcon: Observer(builder: (context) {
-                return InkWell(
-                  onTap:
-                      _controller.text != null && _controller.text!.isNotEmpty
-                          ? () {
-                              _controller.search();
-                            }
-                          : null,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Image.asset(
-                      AppIcons.search,
-                      color: AppColors.primary.withValues(alpha: .3),
-                      height: 15,
-                      fit: BoxFit.contain,
+              suffixIcon: Observer(
+                builder: (context) {
+                  return InkWell(
+                    onTap:
+                        _controller.text != null && _controller.text!.isNotEmpty
+                        ? () {
+                            _controller.search();
+                          }
+                        : null,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: Image.asset(
+                        AppIcons.search,
+                        color: AppColors.primary.withValues(alpha: .3),
+                        height: 15,
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                },
+              ),
             ),
-            Observer(builder: (context) {
-              if (_controller.searchState == AppStatesEnum.loading)
-                return LoadingWidget();
-              if (_controller.searchState == AppStatesEnum.error)
-                return Expanded(
-                  child: ErrorStateWidget(
-                    failure: _controller.failure!,
-                    onRetry: _controller.search,
-                  ),
-                );
-              if (_controller.searchState == AppStatesEnum.loaded &&
-                  _controller.searchResults.isEmpty)
-                return Text(
-                  'Não há resultados para esta busca',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                );
-              if (_controller.searchState == AppStatesEnum.loaded &&
-                  _controller.searchResults.isNotEmpty)
-                return Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[SizedBox(height: 10)] +
-                          _controller.searchResults
-                              .map(
-                                  (e) => SearchResultComponent(searchResult: e))
-                              .toList(),
+            Observer(
+              builder: (context) {
+                if (_controller.searchState == AppStatesEnum.loading)
+                  return LoadingWidget();
+                if (_controller.searchState == AppStatesEnum.error)
+                  return Expanded(
+                    child: ErrorStateWidget(
+                      failure: _controller.failure!,
+                      onRetry: _controller.search,
                     ),
-                  ),
-                );
-              else
-                return Container();
-            })
+                  );
+                if (_controller.searchState == AppStatesEnum.loaded &&
+                    _controller.searchResults.isEmpty)
+                  return Text(
+                    'Não há resultados para esta busca',
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  );
+                if (_controller.searchState == AppStatesEnum.loaded &&
+                    _controller.searchResults.isNotEmpty)
+                  return Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children:
+                            <Widget>[SizedBox(height: 10)] +
+                            _controller.searchResults
+                                .map(
+                                  (e) => SearchResultComponent(searchResult: e),
+                                )
+                                .toList(),
+                      ),
+                    ),
+                  );
+                else
+                  return Container();
+              },
+            ),
           ],
         ),
       ),

@@ -30,30 +30,34 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       body: SafeArea(
-        child: Observer(builder: (context) {
-          if (_controller.userState == AppStatesEnum.error)
-            return ErrorStateWidget(
-                failure: _controller.failure!, onRetry: _controller.getUser);
-          if (_controller.user == null)
-            return Center(child: LoadingWidget());
-          else
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                UserComponent(_controller.user!),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),
-                    child: Column(
-                      children: _controller.user!.repos
-                          .map((e) => RepoComponent(e))
-                          .toList(),
+        child: Observer(
+          builder: (context) {
+            if (_controller.userState == AppStatesEnum.error)
+              return ErrorStateWidget(
+                failure: _controller.failure!,
+                onRetry: _controller.getUser,
+              );
+            if (_controller.user == null)
+              return Center(child: LoadingWidget());
+            else
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  UserComponent(_controller.user!),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: EdgeInsets.only(bottom: 20, left: 10, right: 10),
+                      child: Column(
+                        children: _controller.user!.repos
+                            .map((e) => RepoComponent(e))
+                            .toList(),
+                      ),
                     ),
                   ),
-                )
-              ],
-            );
-        }),
+                ],
+              );
+          },
+        ),
       ),
     );
   }

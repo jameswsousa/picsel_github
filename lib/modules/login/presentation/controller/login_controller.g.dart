@@ -13,26 +13,29 @@ mixin _$LoginController on _LoginControllerBase, Store {
 
   @override
   String? get errorTextEmail => (_$errorTextEmailComputed ??= Computed<String?>(
-          () => super.errorTextEmail,
-          name: '_LoginControllerBase.errorTextEmail'))
-      .value;
+    () => super.errorTextEmail,
+    name: '_LoginControllerBase.errorTextEmail',
+  )).value;
   Computed<String?>? _$errorTextPasswordComputed;
 
   @override
-  String? get errorTextPassword => (_$errorTextPasswordComputed ??=
-          Computed<String?>(() => super.errorTextPassword,
-              name: '_LoginControllerBase.errorTextPassword'))
-      .value;
+  String? get errorTextPassword =>
+      (_$errorTextPasswordComputed ??= Computed<String?>(
+        () => super.errorTextPassword,
+        name: '_LoginControllerBase.errorTextPassword',
+      )).value;
   Computed<bool>? _$isFormValidComputed;
 
   @override
-  bool get isFormValid =>
-      (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
-              name: '_LoginControllerBase.isFormValid'))
-          .value;
+  bool get isFormValid => (_$isFormValidComputed ??= Computed<bool>(
+    () => super.isFormValid,
+    name: '_LoginControllerBase.isFormValid',
+  )).value;
 
-  late final _$loginStateAtom =
-      Atom(name: '_LoginControllerBase.loginState', context: context);
+  late final _$loginStateAtom = Atom(
+    name: '_LoginControllerBase.loginState',
+    context: context,
+  );
 
   @override
   AppStatesEnum get loginState {
@@ -47,8 +50,10 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  late final _$emailAtom =
-      Atom(name: '_LoginControllerBase.email', context: context);
+  late final _$emailAtom = Atom(
+    name: '_LoginControllerBase.email',
+    context: context,
+  );
 
   @override
   String? get email {
@@ -63,8 +68,10 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  late final _$passwordAtom =
-      Atom(name: '_LoginControllerBase.password', context: context);
+  late final _$passwordAtom = Atom(
+    name: '_LoginControllerBase.password',
+    context: context,
+  );
 
   @override
   String? get password {
@@ -79,8 +86,10 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  late final _$isTappedButtonAtom =
-      Atom(name: '_LoginControllerBase.isTappedButton', context: context);
+  late final _$isTappedButtonAtom = Atom(
+    name: '_LoginControllerBase.isTappedButton',
+    context: context,
+  );
 
   @override
   bool get isTappedButton {
@@ -95,8 +104,10 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  late final _$failureAtom =
-      Atom(name: '_LoginControllerBase.failure', context: context);
+  late final _$failureAtom = Atom(
+    name: '_LoginControllerBase.failure',
+    context: context,
+  );
 
   @override
   Failure? get failure {
@@ -111,21 +122,26 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
-  late final _$loginAsyncAction =
-      AsyncAction('_LoginControllerBase.login', context: context);
+  late final _$loginAsyncAction = AsyncAction(
+    '_LoginControllerBase.login',
+    context: context,
+  );
 
   @override
   Future<void> login() {
     return _$loginAsyncAction.run(() => super.login());
   }
 
-  late final _$_LoginControllerBaseActionController =
-      ActionController(name: '_LoginControllerBase', context: context);
+  late final _$_LoginControllerBaseActionController = ActionController(
+    name: '_LoginControllerBase',
+    context: context,
+  );
 
   @override
   void cleanFields() {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.cleanFields');
+      name: '_LoginControllerBase.cleanFields',
+    );
     try {
       return super.cleanFields();
     } finally {

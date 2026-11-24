@@ -64,9 +64,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
         _controller = MoneyMaskedTextController(thousandSeparator: '');
       } else {
         if (widget.mask.isNotEmpty) {
-          _controller = MaskedTextController(
-            mask: widget.mask,
-          );
+          _controller = MaskedTextController(mask: widget.mask);
         } else {
           _controller = TextEditingController();
         }
@@ -82,7 +80,8 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
     _controller.addListener(() {
       if (_controller.selection.start < 0) {
         _controller.selection = TextSelection.fromPosition(
-            TextPosition(offset: _controller.text.length));
+          TextPosition(offset: _controller.text.length),
+        );
       }
     });
     super.initState();
@@ -102,9 +101,7 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
         widget.label == null
             ? Container()
             : Text('  ${widget.label!}', style: TextStyle(color: Colors.white)),
-        SizedBox(
-          height: 8,
-        ),
+        SizedBox(height: 8),
         Container(
           child: TextField(
             style: widget.style ?? TextStyle(color: Colors.white),
@@ -122,25 +119,28 @@ class _DefaultTextFieldState extends State<DefaultTextField> {
             inputFormatters: widget.inputFormatters,
             cursorColor: AppColors.border,
             decoration: InputDecoration(
-                suffixIcon: widget.suffixIcon,
-                errorText: widget.errorText,
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.primaryShade2, width: 2),
+              suffixIcon: widget.suffixIcon,
+              errorText: widget.errorText,
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColors.primaryShade2,
+                  width: 2,
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.border, width: 2),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.error, width: 2),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.error, width: 2),
-                ),
-                fillColor: widget.fillColor ?? AppColors.primaryDarker,
-                filled: true),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.border, width: 2),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.error, width: 2),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.error, width: 2),
+              ),
+              fillColor: widget.fillColor ?? AppColors.primaryDarker,
+              filled: true,
+            ),
           ),
-        )
+        ),
       ],
     );
   }

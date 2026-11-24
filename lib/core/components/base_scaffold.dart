@@ -7,10 +7,11 @@ class BaseScaffold extends StatelessWidget {
   final Widget body;
   final bool hasDrawer;
   final Color backgroundColor;
-  const BaseScaffold(
-      {required this.body,
-      this.hasDrawer = true,
-      this.backgroundColor = Colors.white});
+  const BaseScaffold({
+    required this.body,
+    this.hasDrawer = true,
+    this.backgroundColor = Colors.white,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +25,27 @@ class BaseScaffold extends StatelessWidget {
                     width: double.infinity,
                     color: AppColors.primary,
                     padding: EdgeInsets.fromLTRB(
-                        20, MediaQuery.of(context).padding.top + 24, 20, 24),
+                      20,
+                      MediaQuery.of(context).padding.top + 24,
+                      20,
+                      24,
+                    ),
                     child: Row(
                       children: [
-                        Image.asset(AppIcons.logo,
-                            height: 36, color: Colors.white),
+                        Image.asset(
+                          AppIcons.logo,
+                          height: 36,
+                          color: Colors.white,
+                        ),
                         SizedBox(width: 12),
-                        Text('Github API',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600)),
+                        Text(
+                          'Github API',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -48,7 +59,10 @@ class BaseScaffold extends StatelessWidget {
                     },
                   ),
                   DrawerComponent(
-                      img: AppIcons.download, title: 'Salvos', onTap: () {}),
+                    img: AppIcons.download,
+                    title: 'Salvos',
+                    onTap: () {},
+                  ),
                   Spacer(),
                   Divider(height: 1, color: AppColors.border),
                   DrawerComponent(
@@ -62,26 +76,28 @@ class BaseScaffold extends StatelessWidget {
                   ),
                   SizedBox(height: MediaQuery.of(context).padding.bottom + 8),
                 ],
-              ))
+              ),
+            )
           : null,
       backgroundColor: backgroundColor,
       appBar: AppBar(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(AppIcons.logo,
-                  fit: BoxFit.contain,
-                  height: 30,
-                  width: 30,
-                  color: Colors.white),
-              SizedBox(
-                width: 8,
-              ),
-              Text('Github API')
-            ],
-          )),
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              AppIcons.logo,
+              fit: BoxFit.contain,
+              height: 30,
+              width: 30,
+              color: Colors.white,
+            ),
+            SizedBox(width: 8),
+            Text('Github API'),
+          ],
+        ),
+      ),
       body: body,
     );
   }

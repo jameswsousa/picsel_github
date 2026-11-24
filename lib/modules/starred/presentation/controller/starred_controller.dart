@@ -27,12 +27,15 @@ abstract class _StarredControllerBase with Store {
     starredRepos = null;
     StarredState = AppStatesEnum.loading;
     final result = await _repository.getStarredFromUser(username);
-    result.fold((l) {
-      failure = l;
-      StarredState = AppStatesEnum.error;
-    }, (r) {
-      starredRepos = r;
-      StarredState = AppStatesEnum.loaded;
-    });
+    result.fold(
+      (l) {
+        failure = l;
+        StarredState = AppStatesEnum.error;
+      },
+      (r) {
+        starredRepos = r;
+        StarredState = AppStatesEnum.loaded;
+      },
+    );
   }
 }

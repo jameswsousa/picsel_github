@@ -5,10 +5,11 @@ class RepositoryEntity {
   final String url;
   final DateTime updated_at;
 
-  RepositoryEntity(
-      {required this.name,
-      this.description,
-      required this.url,
-      required this.id,
-      required this.updated_at});
+  RepositoryEntity({
+    required this.name,
+    this.description,
+    required this.url,
+    required this.id,
+    required this.updated_at,
+  });
 }

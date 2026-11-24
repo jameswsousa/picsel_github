@@ -3,10 +3,7 @@ import 'dart:io';
 
 /// Represents the status of the data connection.
 /// Returned by [DataConnectionChecker.connectionStatus]
-enum DataConnectionStatus {
-  disconnected,
-  connected,
-}
+enum DataConnectionStatus { disconnected, connected }
 
 /// This is a singleton that can be accessed like a regular constructor
 /// i.e. DataConnectionChecker() always returns the same instance.
@@ -288,10 +285,7 @@ class AddressCheckResult {
   final AddressCheckOptions options;
   final bool isSuccess;
 
-  AddressCheckResult(
-    this.options,
-    this.isSuccess,
-  );
+  AddressCheckResult(this.options, this.isSuccess);
 
   @override
   String toString() => 'AddressCheckResult($options, $isSuccess)';

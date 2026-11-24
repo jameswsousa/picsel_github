@@ -4,5 +4,6 @@ import 'package:picsel_github/modules/user/data/models/repository_model.dart';
 
 abstract class StarredRepository {
   Future<Either<Failure, List<RepositoryModel>>> getStarredFromUser(
-      String username);
+    String username,
+  );
 }

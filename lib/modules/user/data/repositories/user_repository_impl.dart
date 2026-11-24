@@ -20,39 +20,53 @@ class UserRepositoryImpl extends UserRepository {
         final user = await userDataSource.getUser(username);
         return Right(user);
       } on ServerException {
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro no Servidor',
-            message: 'Não foi possível obter os dados'));
+            message: 'Não foi possível obter os dados',
+          ),
+        );
       } catch (_) {
         // Queda de rede no meio da requisição ou resposta em formato inesperado.
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro ao carregar',
-            message: 'Não foi possível obter os dados.\nTente novamente.'));
+            message: 'Não foi possível obter os dados.\nTente novamente.',
+          ),
+        );
       }
     } else
-      return Left(ConnectionFailure(
+      return Left(
+        ConnectionFailure(
           title: 'Erro na conexão',
-          message:
-              'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente'));
+          message: 'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente',
+        ),
+      );
   }
 
   @override
   Future<Either<Failure, List<UserResultEntity>>> searchUser(
-      String text) async {
+    String text,
+  ) async {
     if (await networkInfo.isConnected) {
       try {
         final userResults = await userDataSource.searchUser(text);
         return Right(userResults);
       } on ServerException {
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro no Servidor',
-            message: 'Não foi possível obter os dados'));
+            message: 'Não foi possível obter os dados',
+          ),
+        );
       }
     } else {
-      return Left(ConnectionFailure(
+      return Left(
+        ConnectionFailure(
           title: 'Erro na conexão',
-          message:
-              'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente'));
+          message: 'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente',
+        ),
+      );
     }
   }
 }

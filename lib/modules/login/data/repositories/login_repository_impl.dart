@@ -9,8 +9,10 @@ class LoginRepositoryImpl extends LoginRepository {
   final NetworkInfo networkInfo;
   final LoginDataSource loginDataSource;
 
-  LoginRepositoryImpl(
-      {required this.networkInfo, required this.loginDataSource});
+  LoginRepositoryImpl({
+    required this.networkInfo,
+    required this.loginDataSource,
+  });
 
   @override
   Future<Either<Failure, bool>> login(String email, String password) async {
@@ -19,15 +21,20 @@ class LoginRepositoryImpl extends LoginRepository {
         final result = await loginDataSource.login(email, password);
         return Right(result);
       } on ServerException {
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro no Servidor',
-            message: 'Não foi possível obter os dados'));
+            message: 'Não foi possível obter os dados',
+          ),
+        );
       }
     } else {
-      return Left(ConnectionFailure(
+      return Left(
+        ConnectionFailure(
           title: 'Erro na conexão',
-          message:
-              'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente'));
+          message: 'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente',
+        ),
+      );
     }
   }
 }

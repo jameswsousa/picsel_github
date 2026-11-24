@@ -22,19 +22,18 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Image.asset(
-                AppIcons.logo,
-                color: Colors.white,
-                height: 150,
-                fit: BoxFit.contain,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Observer(builder: (context) {
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Image.asset(
+              AppIcons.logo,
+              color: Colors.white,
+              height: 150,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(height: 20),
+            Observer(
+              builder: (context) {
                 return DefaultTextField(
                   label: 'E-mail',
                   textInputAction: TextInputAction.next,
@@ -46,11 +45,11 @@ class LoginPage extends StatelessWidget {
                     _controller.email = value;
                   },
                 );
-              }),
-              SizedBox(
-                height: 20,
-              ),
-              Observer(builder: (context) {
+              },
+            ),
+            SizedBox(height: 20),
+            Observer(
+              builder: (context) {
                 return DefaultTextField(
                   onEditingComplete: _controller.isFormValid
                       ? () => LoginFunction(context)
@@ -66,22 +65,25 @@ class LoginPage extends StatelessWidget {
                     _controller.password = value;
                   },
                 );
-              }),
-              SizedBox(
-                height: 20,
-              ),
-              Observer(builder: (context) {
+              },
+            ),
+            SizedBox(height: 20),
+            Observer(
+              builder: (context) {
                 return DefaultButton(
-                    color: _controller.isFormValid ? AppColors.success : null,
-                    textColor: _controller.isFormValid ? Colors.white : null,
-                    label: 'Entrar',
-                    onPressed: _controller.isFormValid
-                        ? () => LoginFunction(context)
-                        : _controller.isTappedButton
-                            ? null
-                            : () => _controller.isTappedButton = true);
-              })
-            ]),
+                  color: _controller.isFormValid ? AppColors.success : null,
+                  textColor: _controller.isFormValid ? Colors.white : null,
+                  label: 'Entrar',
+                  onPressed: _controller.isFormValid
+                      ? () => LoginFunction(context)
+                      : _controller.isTappedButton
+                      ? null
+                      : () => _controller.isTappedButton = true,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -92,7 +94,9 @@ class LoginPage extends StatelessWidget {
     if (_controller.loginState == AppStatesEnum.error) {
       Modular.to.pop();
       DefaultAlertDialog.showError(
-          context: context, failure: _controller.failure!);
+        context: context,
+        failure: _controller.failure!,
+      );
     }
     if (_controller.loginState == AppStatesEnum.loaded) {
       Modular.to.pop();

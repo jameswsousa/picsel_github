@@ -10,31 +10,42 @@ class SearchRepositoryImpl extends SearchRepository {
   final NetworkInfo networkInfo;
   final SearchDataSource searchDataSource;
 
-  SearchRepositoryImpl(
-      {required this.networkInfo, required this.searchDataSource});
+  SearchRepositoryImpl({
+    required this.networkInfo,
+    required this.searchDataSource,
+  });
 
   @override
   Future<Either<Failure, List<UserResultEntity>>> searchUsers(
-      String text) async {
+    String text,
+  ) async {
     if (await networkInfo.isConnected) {
       try {
         final result = await searchDataSource.searchUsers(text);
         return Right(result);
       } on ServerException {
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro no Servidor',
-            message: 'Não foi possível obter os dados'));
+            message: 'Não foi possível obter os dados',
+          ),
+        );
       } catch (_) {
         // Queda de rede no meio da requisição ou resposta em formato inesperado.
-        return Left(ServerFailure(
+        return Left(
+          ServerFailure(
             title: 'Erro ao carregar',
-            message: 'Não foi possível obter os dados.\nTente novamente.'));
+            message: 'Não foi possível obter os dados.\nTente novamente.',
+          ),
+        );
       }
     } else {
-      return Left(ConnectionFailure(
+      return Left(
+        ConnectionFailure(
           title: 'Erro na conexão',
-          message:
-              'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente'));
+          message: 'Não foi possível buscar os dados.\nVerifique sua conexão e tente novamente',
+        ),
+      );
     }
   }
 }

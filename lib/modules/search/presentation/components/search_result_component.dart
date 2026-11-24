@@ -16,12 +16,14 @@ class SearchResultComponent extends StatelessWidget {
         Modular.to.popAndPushNamed('/user/', arguments: searchResult.login);
       },
       child: Container(
-          margin: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-              border: Border.all(color: AppColors.border),
-              borderRadius: BorderRadius.circular(5)),
-          padding: EdgeInsets.all(10),
-          child: Text(searchResult.login)),
+        margin: EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.border),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        padding: EdgeInsets.all(10),
+        child: Text(searchResult.login),
+      ),
     );
   }
 }
