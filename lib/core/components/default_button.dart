@@ -33,8 +33,8 @@ class DefaultButton extends StatelessWidget {
       child: TextButton(
           onPressed: onPressed,
           style: ButtonStyle(
-              padding: MaterialStateProperty.all(EdgeInsets.zero),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              padding: WidgetStateProperty.all(EdgeInsets.zero),
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                   side: invertColors
                       ? BorderSide(
                           color: color ?? Colors.white,
@@ -45,14 +45,14 @@ class DefaultButton extends StatelessWidget {
                               color: textColor ?? AppColors.border, width: 1)
                           : BorderSide(color: AppColors.border),
                   borderRadius: BorderRadius.circular(5))),
-              textStyle: MaterialStateProperty.all(h1.copyWith(
+              textStyle: WidgetStateProperty.all(h1.copyWith(
                   fontSize: 18,
                   color: invertColors ? Colors.white : AppColors.primary)),
-              backgroundColor: MaterialStateProperty.resolveWith((states) {
+              backgroundColor: WidgetStateProperty.resolveWith((states) {
                 if (color != null) return color;
                 if (invertColors) return AppColors.primary;
-                if (states.contains(MaterialState.disabled)) {
-                  return AppColors.secondary.withOpacity(.3);
+                if (states.contains(WidgetState.disabled)) {
+                  return AppColors.secondary.withValues(alpha: .3);
                 } else {
                   return AppColors.secondary;
                 }

@@ -18,7 +18,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final _controller = Modular.get<SearchController>();
+  final _controller = Modular.get<SearchUsersController>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class _SearchPageState extends State<SearchPage> {
                     padding: EdgeInsets.symmetric(vertical: 10),
                     child: Image.asset(
                       AppIcons.search,
-                      color: AppColors.primary.withOpacity(.3),
+                      color: AppColors.primary.withValues(alpha: .3),
                       height: 15,
                       fit: BoxFit.contain,
                     ),

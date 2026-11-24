@@ -7,7 +7,7 @@ import 'package:mobx/mobx.dart';
 
 part 'search_controller.g.dart';
 
-class SearchController = _SearchControllerBase with _$SearchController;
+class SearchUsersController = _SearchControllerBase with _$SearchUsersController;
 
 abstract class _SearchControllerBase with Store {
   final SearchRepositoryImpl _repository;

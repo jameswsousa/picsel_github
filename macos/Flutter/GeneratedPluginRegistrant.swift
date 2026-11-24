@@ -5,7 +5,7 @@
 import FlutterMacOS
 import Foundation
 
-import sqflite
+import sqflite_darwin
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

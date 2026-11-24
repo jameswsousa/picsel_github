@@ -12,24 +12,30 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  # Versão do PR #1 (github.com/cybex-dev/cool-flare/pull/1), que corrige o erro
+  # "RenderObject was disposed prior to its owning element being unmounted".
+  # Fixada no commit; dá para voltar para `^3.x` quando o PR entrar no pub.dev.
+  cool_flare:
+    git:
+      url: https://github.com/brancedev/cool-flare.git
+      ref: 95fd9665bff0f15f338532cd20e42ccef475bef9
+  dartz: ^0.10.1
+  equatable: ^2.0.5
+  flutter_masked_text2: ^0.9.1
+  flutter_mobx: ^2.4.0
+  flutter_modular: ^5.0.3
+  http: ^0.13.5
+  intl: ^0.18.0
+  mobx: ^2.7.0
+  sqflite: ^2.2.6
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  build_runner: ^2.3.3
-  dartz: ^0.10.1
-  equatable: ^2.0.5
-  flare_flutter: ^3.0.2
-  flutter_masked_text2: ^0.9.1
-  flutter_mobx: ^2.0.6+5
-  flutter_modular: ^5.0.3
-  http: ^0.13.5
-  intl: ^0.18.0
-  mobx: ^2.1.4
-  mobx_codegen: ^2.1.1
-  sqflite: ^2.2.6
-  url_launcher: ^6.1.10
+  build_runner: ^2.16.1
+  mobx_codegen: ^2.8.0
 
 
 flutter:

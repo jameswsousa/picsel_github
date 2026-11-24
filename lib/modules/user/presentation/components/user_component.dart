@@ -43,7 +43,7 @@ class UserComponent extends StatelessWidget {
                             user.login,
                             style: TextStyle(
                                 fontSize: 12,
-                                color: AppColors.primary.withOpacity(.5)),
+                                color: AppColors.primary.withValues(alpha: .5)),
                           ),
                       ],
                     ),
@@ -72,7 +72,8 @@ class UserComponent extends StatelessWidget {
             if (user.bio != null)
               Text(
                 user.bio!,
-                style: TextStyle(color: AppColors.primary.withOpacity(.8)),
+                style:
+                    TextStyle(color: AppColors.primary.withValues(alpha: .8)),
               )
           ],
         ));

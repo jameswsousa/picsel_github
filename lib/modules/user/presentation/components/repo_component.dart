@@ -29,7 +29,7 @@ class RepoComponent extends StatelessWidget {
             ),
             Text('updated at ${DateParser.getDateString(repo.updated_at)}',
                 style: TextStyle(
-                    color: AppColors.primary.withOpacity(.3), fontSize: 12)),
+                    color: AppColors.primary.withValues(alpha: .3), fontSize: 12)),
           ]),
           Container(
             child: Row(
