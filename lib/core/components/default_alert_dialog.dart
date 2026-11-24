@@ -10,9 +10,9 @@ class DefaultAlertDialog {
   static Future showError({
     required BuildContext context,
     required Failure failure,
-    final String? buttonText,
-    final String? icon,
-    final Function()? buttonAction,
+    String? buttonText,
+    String? icon,
+    Function()? buttonAction,
   }) =>
       showDialog(
           context: context,
