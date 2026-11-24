@@ -2,7 +2,7 @@ import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/core/errors/failures.dart';
 import 'package:picsel_github/modules/search/domain/entities/user_result_entity.dart';
 
-import '../../data/repositories/search_repository_impl.dart';
+import '../../domain/repositories/search_repository.dart';
 
 import 'package:mobx/mobx.dart';
 
@@ -12,7 +12,7 @@ class SearchUsersController = _SearchControllerBase
     with _$SearchUsersController;
 
 abstract class _SearchControllerBase with Store {
-  final SearchRepositoryImpl _repository;
+  final SearchRepository _repository;
 
   _SearchControllerBase(this._repository);
 

@@ -1,7 +1,7 @@
 import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/core/errors/failures.dart';
 import 'package:mobx/mobx.dart';
-import 'package:picsel_github/modules/starred/data/repositories/starred_repository_impl.dart';
+import 'package:picsel_github/modules/starred/domain/repositories/starred_repository.dart';
 import 'package:picsel_github/modules/user/domain/entities/repository_entity.dart';
 
 part 'starred_controller.g.dart';
@@ -9,7 +9,7 @@ part 'starred_controller.g.dart';
 class StarredController = _StarredControllerBase with _$StarredController;
 
 abstract class _StarredControllerBase with Store {
-  final StarredRepositoryImpl _repository;
+  final StarredRepository _repository;
 
   _StarredControllerBase(this._repository);
 

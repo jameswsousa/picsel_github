@@ -2,14 +2,14 @@ import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/core/errors/failures.dart';
 import 'package:mobx/mobx.dart';
 import 'package:picsel_github/core/utils/validation.dart';
-import 'package:picsel_github/modules/login/data/repositories/login_repository_impl.dart';
+import 'package:picsel_github/modules/login/domain/repositories/login_repository.dart';
 
 part 'login_controller.g.dart';
 
 class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
-  final LoginRepositoryImpl _repository;
+  final LoginRepository _repository;
 
   _LoginControllerBase(this._repository);
 

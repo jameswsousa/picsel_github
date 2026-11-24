@@ -1,7 +1,7 @@
 import 'package:picsel_github/core/enums/app_states.dart';
 import 'package:picsel_github/core/errors/failures.dart';
 
-import '../../data/repositories/user_repository_impl.dart';
+import '../../domain/repositories/user_repository.dart';
 
 import 'package:mobx/mobx.dart';
 
@@ -12,7 +12,7 @@ part 'user_controller.g.dart';
 class UserController = _UserControllerBase with _$UserController;
 
 abstract class _UserControllerBase with Store {
-  final UserRepositoryImpl _repository;
+  final UserRepository _repository;
 
   _UserControllerBase(this._repository);
 
